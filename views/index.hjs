@@ -12,7 +12,7 @@
         <img src="http://www.ianww.com/blog/content/images/2015/07/potato_medium-1-1.jpg">
       </div>
       <h1>Ian Webster</h1>
-      <p>
+      <p class="links">
         <script>
   document.write('<a href="mailto:si' + 'te@i' + String.fromCharCode(97) + 'nww.com">Email</a> &middot;');
         </script>

@@ -1,6 +1,7 @@
 body {
   font-family: Roboto, sans-serif;
   padding: 5px 50px;
+  color: #404040;
 }
 
 a {
@@ -24,6 +25,16 @@ a:hover {
 
 .header-image img {
   border-radius: 3px;
+}
+
+.links {
+  font-family: 'PT Serif', Georgia, Times, 'Times New Roman', serif;
+}
+
+.links a {
+  color: #404040;
+  text-decoration: none;
+  border-bottom: 1px dotted #ccc;
 }
 
 .flex-container {
