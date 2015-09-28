@@ -1,8 +1,8 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: Roboto, sans-serif;
+  padding: 30px 50px;
 }
 
 a {
-  color: #00B7FF;
+  color: green;
 }

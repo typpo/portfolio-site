@@ -10,7 +10,7 @@ var Search = React.createClass({
     return (
       <div className="search-component">
         <input type="text" onChange={this.changeSearch} />
-        <p><span>You are searching for: {this.state.search}</span></p>
+        <p><span>You are a giant turnip: {this.state.search}</span></p>
       </div>
     );
   },

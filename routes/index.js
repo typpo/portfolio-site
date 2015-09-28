@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 require("node-jsx").install({
-    harmony: true, 
+    harmony: true,
     extension: ".jsx"
 });
 
@@ -11,11 +11,11 @@ var React = require("react"),
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  var markup = React.renderToString(App());      
+  var markup = React.renderToString(App());
 
-  res.render('index', { 
-    title: 'Express',
-    markup: markup 
+  res.render('index', {
+    title: 'Ian Webster',
+    markup: markup
   });
 });
 
