@@ -20506,12 +20506,14 @@
 	      }
 	    }
 	    return (
-	      React.createElement("div", {className: "project flex-item-default", 
-	            style: style, 
-	           onMouseOver: this.onMouseOver, 
-	           onMouseOut: this.onMouseOut}, 
-	        React.createElement("h3", {className: "title"}, this.props.data.title), 
-	        React.createElement("div", {className: "desc"}, this.props.data.desc)
+	      React.createElement("a", {href: this.props.data.url}, 
+	        React.createElement("div", {className: "project flex-item-default", 
+	              style: style, 
+	             onMouseOver: this.onMouseOver, 
+	             onMouseOut: this.onMouseOut}, 
+	          React.createElement("h3", {className: "title"}, this.props.data.title), 
+	          React.createElement("div", {className: "desc"}, this.props.data.desc)
+	        )
 	      )
 	    );
 	  },
@@ -20601,6 +20603,23 @@
 	    desc: 'What did Earth look like 600 million years ago?',
 	    imgurl: 'http://i.imgur.com/Ya57O3tl.png',
 	    url: 'http://dinosaurpictures.org/ancient-earth/',
+	  },
+	  {
+	    title: 'Harvest',
+	    desc: 'Infrared aerial crop monitoring.',
+	    imgurl: 'https://i.imgur.com/SJVfCEg.jpg',
+	    url: 'http://harvesters.club',
+	  },
+	  {
+	    title: 'Space Balloons',
+	    desc: 'Sending cameras and other things to near-space.',
+	    imgurl: 'http://i.imgur.com/9ngl1H5l.jpg',
+	  },
+	  {
+	    title: 'RapChat',
+	    desc: 'The future of communication.',
+	    imgurl: 'http://i.imgur.com/MdbV70Tl.png',
+	    url: 'http://www.rapchat.us',
 	  },
 	]
 

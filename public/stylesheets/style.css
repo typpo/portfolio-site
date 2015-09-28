@@ -40,7 +40,7 @@ a:hover {
   min-width: 300px;
   min-height: 250px;
   flex-grow: 0;
-  flex-shrink: 1;
+  flex-shrink: 0;
   flex-basis: auto;
 
   margin-right: 15px;

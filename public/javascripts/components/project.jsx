@@ -17,13 +17,15 @@ var Project = React.createClass({
       }
     }
     return (
-      <div className="project flex-item-default"
-            style={style}
-           onMouseOver={this.onMouseOver}
-           onMouseOut={this.onMouseOut}>
-        <h3 className="title">{this.props.data.title}</h3>
-        <div className="desc">{this.props.data.desc}</div>
-      </div>
+      <a href={this.props.data.url}>
+        <div className="project flex-item-default"
+              style={style}
+             onMouseOver={this.onMouseOver}
+             onMouseOut={this.onMouseOut}>
+          <h3 className="title">{this.props.data.title}</h3>
+          <div className="desc">{this.props.data.desc}</div>
+        </div>
+      </a>
     );
   },
   onMouseOver(event) {
