@@ -7,7 +7,6 @@ var App = React.createClass({
   render() {
     return (
       <div>
-        <Search />
         <ProjectList />
       </div>
     );

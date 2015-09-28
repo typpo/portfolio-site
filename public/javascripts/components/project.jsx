@@ -10,9 +10,9 @@ var Project = React.createClass({
     var style = {};
     if (this.props.data.imgurl) {
       if (this.state.hover) {
-        style['background'] = 'url(' + this.props.data.imgurl + ')';
+        style['backgroundImage'] = 'url(' + this.props.data.imgurl + ')';
       } else {
-        style['background'] = 'linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(' +
+        style['backgroundImage'] = 'linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(' +
                 this.props.data.imgurl + ')';
       }
     }

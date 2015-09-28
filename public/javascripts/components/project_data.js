@@ -12,31 +12,27 @@ module.exports = [
     url: 'http://www.ianww.com/ad-detector',
   },
   {
-    title: 'hue',
-    desc: 'bar',
+    title: 'Galaxies',
+    desc: 'Visualization of 5 million galaxies in 2 billion cubic light-years - based on one of the largest n-body simulations ever.',
+    imgurl: 'http://i.imgur.com/mzwBJ8Sl.jpg',
+    url: 'http://www.asterank.com/galaxies',
   },
   {
-    title: 'foo',
-    desc: 'bar',
+    title: 'Asteroid Viewer',
+    desc: 'View accurate 3D models of asteroids from radar and inverted light curves.',
+    imgurl: 'http://i.imgur.com/yQaQHiUl.png',
+    url: 'http://www.ianww.com/asteroid-viewer',
   },
   {
-    title: 'foo meow',
-    desc: 'bar',
+    title: 'Dinosaur Pictures',
+    desc: 'The official dinosaur picture database.',
+    imgurl: 'http://i.imgur.com/p5cHTml.png',
+    url: 'http://dinosaurpictures.org/',
   },
   {
-    title: 'hue',
-    desc: 'bar',
-  },
-  {
-    title: 'foo',
-    desc: 'bar',
-  },
-  {
-    title: 'foo meow',
-    desc: 'bar',
-  },
-  {
-    title: 'hue',
-    desc: 'bar',
+    title: 'Ancient Earth',
+    desc: 'What did Earth look like 600 million years ago?',
+    imgurl: 'http://i.imgur.com/Ya57O3tl.png',
+    url: 'http://dinosaurpictures.org/ancient-earth/',
   },
 ]

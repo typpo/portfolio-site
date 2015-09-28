@@ -1,6 +1,6 @@
 body {
   font-family: Roboto, sans-serif;
-  padding: 30px 50px;
+  padding: 5px 50px;
 }
 
 a {
@@ -9,6 +9,21 @@ a {
 
 a:hover {
   color: rgb(0, 78, 0);
+}
+
+#about {
+  background-color: #eee;
+  padding: 10px 20px;
+}
+
+.header-image {
+  float: left;
+  margin-top: 0.5em;
+  margin-right: 10px;
+}
+
+.header-image img {
+  border-radius: 3px;
 }
 
 .flex-container {
@@ -36,6 +51,7 @@ a:hover {
 
 .project {
   position: relative;
+  background-position: center;
 
   color: #fff;
   cursor: pointer;
