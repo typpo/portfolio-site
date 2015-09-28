@@ -37,6 +37,11 @@ a:hover {
   color: #404040;
 }
 
+.links a:hover {
+  color: rgb(0, 78, 0);
+  border-bottom: 1px dotted rgb(0, 78, 0);
+}
+
 .flex-container {
   display:flex;
   flex-flow: row wrap;
