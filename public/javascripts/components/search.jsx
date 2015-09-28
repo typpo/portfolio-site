@@ -1,9 +1,9 @@
-var React = require("react");
+var React = require('react');
 
 var Search = React.createClass({
   getInitialState() {
     return {
-      search: ""
+      search: ''
     };
   },
   render() {

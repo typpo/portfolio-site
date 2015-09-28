@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-require("node-jsx").install({
+require('node-jsx').install({
     harmony: true,
-    extension: ".jsx"
+    extension: '.jsx'
 });
 
-var React = require("react"),
-    App = React.createFactory(require("../public/javascripts/components/app"));
+var React = require('react'),
+    App = React.createFactory(require('../public/javascripts/components/app'));
 
 /* GET home page. */
 router.get('/', function(req, res) {

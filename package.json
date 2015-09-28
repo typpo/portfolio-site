@@ -14,7 +14,7 @@
     "jsx-loader": "^0.12.2",
     "morgan": "~1.3.0",
     "node-jsx": "^0.12.4",
-    "react": "^0.12.2",
+    "react": "latest",
     "serve-favicon": "~2.1.3"
   }
 }

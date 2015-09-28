@@ -37,9 +37,14 @@
 
     <!-- TODO development only -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
-    <script src="http://localhost:60000/autoreload.js"></script>
+    <script src="http://localhost:60000/autoreload.js" defer></script>
     <script>
-       AutoReload.Watch("localhost:60000");
+      var t = setInterval(function() {
+        if (typeof AutoReload !== 'undefined') {
+          AutoReload.Watch('localhost:60000');
+          clearInterval(t);
+        }
+      }, 100);
     </script>
   </body>
 </html>
