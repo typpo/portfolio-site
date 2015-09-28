@@ -20493,7 +20493,7 @@
 	var Project = React.createClass({displayName: "Project",
 	  render:function() {
 	    return (
-	      React.createElement("div", {className: "project"}, 
+	      React.createElement("div", {className: "project flex-item-default"}, 
 	        React.createElement("h2", null, this.props.data.title), 
 	        React.createElement("p", null, this.props.data.desc)
 	      )
@@ -20509,31 +20509,23 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1),
-	    Project = __webpack_require__(159);
+	    Project = __webpack_require__(159),
+	    projectData = __webpack_require__(161);
 
 	var ProjectList = React.createClass({displayName: "ProjectList",
 	  getInitialState:function() {
 	    return {
-	      data: [
-	        {
-	          title: 'foo',
-	          desc: 'bar',
-	        },
-	        {
-	          title: 'foo meow',
-	          desc: 'bar',
-	        },
-	      ],
+	      data: projectData,
 	    };
 	  },
 	  render:function() {
-	    var projects = this.state.data.map(function(project) {
+	    var projects = this.state.data.map(function(project, idx) {
 	      return (
-	        React.createElement(Project, {data: project})
+	        React.createElement(Project, {data: project, key: idx})
 	      );
 	    });
 	    return (
-	      React.createElement("div", {className: "project-list"}, 
+	      React.createElement("div", {className: "project-list flex-container"}, 
 	        projects
 	      )
 	    );
@@ -20541,6 +20533,50 @@
 	});
 
 	module.exports = ProjectList;
+
+
+/***/ },
+/* 161 */
+/***/ function(module, exports) {
+
+	module.exports = [
+	  {
+	    title: 'foo',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'foo meow',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'hue',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'foo',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'foo meow',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'hue',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'foo',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'foo meow',
+	    desc: 'bar',
+	  },
+	  {
+	    title: 'hue',
+	    desc: 'bar',
+	  },
+	]
 
 
 /***/ }
