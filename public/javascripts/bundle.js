@@ -20491,13 +20491,40 @@
 	var React = __webpack_require__(1);
 
 	var Project = React.createClass({displayName: "Project",
+	  getInitialState:function() {
+	    return {
+	      hover: false,
+	    }
+	  },
 	  render:function() {
+	    var style = {};
+	    if (this.props.data.imgurl) {
+	      if (this.state.hover) {
+	        style['background'] = 'url(' + this.props.data.imgurl + ')';
+	      } else {
+	        style['background'] = 'linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(' +
+	                this.props.data.imgurl + ')';
+	      }
+	    }
 	    return (
-	      React.createElement("div", {className: "project flex-item-default"}, 
-	        React.createElement("h2", null, this.props.data.title), 
-	        React.createElement("p", null, this.props.data.desc)
+	      React.createElement("div", {className: "project flex-item-default", 
+	            style: style, 
+	           onMouseOver: this.onMouseOver, 
+	           onMouseOut: this.onMouseOut}, 
+	        React.createElement("h3", {className: "title"}, this.props.data.title), 
+	        React.createElement("div", {className: "desc"}, this.props.data.desc)
 	      )
 	    );
+	  },
+	  onMouseOver:function(event) {
+	    this.setState({
+	      hover: true,
+	    });
+	  },
+	  onMouseOut:function(event) {
+	    this.setState({
+	      hover: false,
+	    });
 	  },
 	});
 
@@ -20541,12 +20568,16 @@
 
 	module.exports = [
 	  {
-	    title: 'foo',
-	    desc: 'bar',
+	    title: 'Asterank',
+	    desc: 'Tools and infrastructure to crawl, visualize, and compute on all known asteroids',
+	    imgurl: 'http://i.imgur.com/5FI40mLl.jpg',
+	    url: 'http://www.asterank.com',
 	  },
 	  {
-	    title: 'foo meow',
-	    desc: 'bar',
+	    title: 'AdDetector',
+	    desc: 'Native ad detection - spot articles with corporate sponsors.',
+	    imgurl: 'http://i.imgur.com/5XwQaQxl.png',
+	    url: 'http://www.ianww.com/ad-detector',
 	  },
 	  {
 	    title: 'hue',
