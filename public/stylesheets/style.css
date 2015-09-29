@@ -87,9 +87,9 @@ a:hover {
   background-position: center;
   background-repeat: no-repeat;
   background-color: #eee;
+background-size: cover;
 
   color: #fff;
-  cursor: pointer;
 
   padding: 5px 25px;
 }

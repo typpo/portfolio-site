@@ -20505,6 +20505,9 @@
 	                this.props.data.imgurl + ')';
 	      }
 	    }
+	    if (this.props.data.url) {
+	      style['cursor'] = 'pointer';
+	    }
 	    return (
 	      React.createElement("a", {className: "project-link", href: this.props.data.url}, 
 	        React.createElement("div", {className: "project flex-item-default", 
@@ -20570,7 +20573,7 @@
 	module.exports = [
 	  {
 	    title: 'Asterank',
-	    desc: 'Tools and infrastructure to crawl, visualize, and compute on all known asteroids',
+	    desc: 'Crawl, visualize, and compute on all known asteroids',
 	    imgurl: 'http://i.imgur.com/5FI40mLl.jpg',
 	    url: 'http://www.asterank.com',
 	  },
@@ -20582,7 +20585,7 @@
 	  },
 	  {
 	    title: 'Galaxies',
-	    desc: '5 million galaxies in 2 billion cubic light-years - based on one of the largest n-body simulations ever.',
+	    desc: '2 billion cubic light-years, based on one of the largest n-body simulations ever.',
 	    imgurl: 'http://i.imgur.com/mzwBJ8Sl.jpg',
 	    url: 'http://www.asterank.com/galaxies',
 	  },
@@ -20606,7 +20609,7 @@
 	  },
 	  {
 	    title: 'Harvest',
-	    desc: 'Infrared aerial crop monitoring.',
+	    desc: 'Aerial infrared crop monitoring.',
 	    imgurl: 'https://i.imgur.com/SJVfCEg.jpg',
 	    url: 'http://harvesters.club',
 	  },
@@ -20620,6 +20623,108 @@
 	    desc: 'The future of communication.',
 	    imgurl: 'http://i.imgur.com/MdbV70Tl.png',
 	    url: 'http://www.rapchat.us',
+	  },
+	  {
+	    title: 'Textbelt',
+	    desc: 'Free outgoing SMS API - over 1M texts sent',
+	    imgurl: 'http://www.ianww.com/images/textbelt.png',
+	    url: 'http://textbelt.com',
+	  },
+	  {
+	    title: 'Watchtower',
+	    desc: 'Competitive monitoring platform, LAUNCH hackathon winner.',
+	    imgurl: 'http://www.ianww.com/images/watchtower.png',
+	  },
+	  {
+	    title: 'Asterank Discover',
+	    desc: 'Crowdsourced asteroid discovery - quarter million images reviewed.',
+	    imgurl: 'http://www.ianww.com/images/asterank_discover.png',
+	    url: 'http://www.asterank.com/discover',
+	  },
+	  {
+	    title: 'Verified Facts',
+	    desc: 'A viral conspiracy theory generator.',
+	    imgurl: 'http://www.ianww.com/images/verifiedfacts.png',
+	    url: 'http://www.verifiedfacts.org',
+	  },
+	  {
+	    title: 'HonestMemo',
+	    desc: 'Internal company discussion forum and feedback tool.',
+	    imgurl: 'https://i.imgur.com/Jud7U7zl.png?1',
+	  },
+	  {
+	    title: 'Textbelt',
+	    desc: 'Free outgoing SMS API with over 1 million texts sent.',
+	    imgurl: 'http://www.ianww.com/images/textbelt.png',
+	    url: 'http://textbelt.com',
+	  },
+	  {
+	    title: 'Luna',
+	    desc: '3D interactive moon.',
+	    imgurl: 'http://i.imgur.com/xtmqQQAl.png',
+	    url: 'http://www.ianww.com/moonviz',
+	  },
+	  {
+	    title: 'Six Degrees of Bowie',
+	    desc: 'A graph of musical influencers.',
+	    imgurl: 'http://www.ianww.com/images/bowie.png',
+	  },
+	  {
+	    title: 'Bunkmates',
+	    desc: 'AirBnB for hotels.',
+	    imgurl: 'http://i.imgur.com/oNx5JzAl.png',
+	  },
+	  {
+	    title: 'KeepDream',
+	    desc: 'Dream recording and text analysis.',
+	    imgurl: 'http://www.ianww.com/images/keepdream.png',
+	    url: 'http://www.keepdream.me',
+	  },
+	  {
+	    title: 'World of Loot',
+	    desc: 'Pinterest-style MMO wishlists.',
+	    imgurl: 'http://www.ianww.com/images/worldofloot.png',
+	    url: 'http://www.worldofloot.com',
+	  },
+	  {
+	    title: 'Interview Club',
+	    desc: 'Taking the pain out of hiring. LAUNCH hackathon winner.',
+	    imgurl: 'http://i.imgur.com/MjKtbLEl.png',
+	    url: 'http://www.gointerview.club',
+	  },
+	  {
+	    title: 'Gilded Age',
+	    desc: 'Visualizations and NLP for Gilded-age newspapers.',
+	    imgurl: 'https://i.imgur.com/qZ1wxmJl.png',
+	    url: 'http://github.com/typpo/gilded-age',
+	  },
+	  {
+	    title: 'TalkThen',
+	    desc: 'Convenient conference and telephony app.',
+	    imgurl: 'http://i.imgur.com/aKCnbFRl.png',
+	  },
+	  {
+	    title: 'Candid Candidates',
+	    desc: 'Political browser extension that exposes where people are getting their money.',
+	    imgurl: 'http://i.imgur.com/C2QG9ZOl.png',
+	    url: 'http://github.com/typpo/political-annotations',
+	  },
+	  {
+	    title: 'In 2015 Dollars',
+	    desc: 'Inflation data calculator.',
+	    imgurl: 'http://www.ianww.com/images/in2013dollars.png',
+	    url: 'http://www.in2013dollars.com',
+	  },
+	  {
+	    title: 'CodeNav',
+	    desc: 'Easily navigate code on Github - keyword highlight, code search, etc.',
+	    imgurl: 'https://i.imgur.com/QJwU3Hzl.png',
+	    url: 'http://www.ianww.com/codenav',
+	  },
+	  {
+	    title: 'ListeningPost',
+	    desc: 'Contextual annotations for spoken conversation, YC Hacks winner.',
+	    imgurl: 'https://i.imgur.com/nwXZtDel.png',
 	  },
 	]
 

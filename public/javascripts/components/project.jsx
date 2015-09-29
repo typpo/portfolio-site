@@ -16,6 +16,9 @@ var Project = React.createClass({
                 this.props.data.imgurl + ')';
       }
     }
+    if (this.props.data.url) {
+      style['cursor'] = 'pointer';
+    }
     return (
       <a className="project-link" href={this.props.data.url}>
         <div className="project flex-item-default"
