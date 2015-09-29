@@ -66,8 +66,13 @@ hr {
   border-bottom: 1px dotted rgb(0, 78, 0);
 }
 
-#nav {
+.nav {
   margin-top: 15px;
+}
+
+.nav strong {
+  position:relative;
+  top:-1px;
 }
 
 .flex-container {

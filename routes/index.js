@@ -18,13 +18,4 @@ router.get('/', function(req, res) {
   });
 });
 
-router.get('/talks', function(req, res) {
-  var markup = React.renderToString(App());
-
-  res.render('index', {
-    title: 'Ian Webster',
-    markup: markup
-  });
-});
-
 module.exports = router;

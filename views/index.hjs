@@ -39,9 +39,6 @@
       </div>
     </div>
     <hr/>
-    <div id="nav">
-      <strong>&raquo;</strong> Projects &middot; <a href="#">Talks</a> &middot; <a href="#">Press</a>
-    </div>
     <div id="content">
       {{{markup}}}
     </div>
