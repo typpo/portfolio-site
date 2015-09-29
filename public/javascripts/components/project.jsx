@@ -17,7 +17,7 @@ var Project = React.createClass({
       }
     }
     return (
-      <a href={this.props.data.url}>
+      <a className="project-link" href={this.props.data.url}>
         <div className="project flex-item-default"
               style={style}
              onMouseOver={this.onMouseOver}

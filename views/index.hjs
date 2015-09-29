@@ -2,7 +2,7 @@
 <html>
   <head>
     <title>{{ title }}</title>
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/stylesheets/style.css" />
     <script src="javascripts/bundle.js"></script>
   </head>
@@ -25,14 +25,16 @@
       </p>
 
     </div>
-    <div id="about">
-      <p>
-        I'm an engineer at <a href="http://google.com" target="_blank">Google</a>.  I created <a href="http://www.asterank.com" target="_blank">Asterank</a>, acquired by Planetary Resources in 2013.
-        I was an early engineer and tech lead at <a href="http://room77.com" target="_blank">Room 77</a>, acquired by Google in 2014.
-      </p>
-      <p>
-        In late 2014 I started <a href="http://alioth.io">Alioth</a>, a consulting firm focused on data analysis and visualization.
-      </p>
+    <div class="flex-container">
+      <div id="about">
+        <p>
+          I'm an engineer at <a href="http://google.com" target="_blank">Google</a>.  I created <a href="http://www.asterank.com" target="_blank">Asterank</a>, acquired by Planetary Resources in 2013.
+          I was an early engineer and tech lead at <a href="http://room77.com" target="_blank">Room 77</a>, acquired by Google in 2014.
+        </p>
+        <p>
+          In late 2014 I started <a href="http://alioth.io">Alioth</a>, a consulting firm focused on data analysis and visualization.
+        </p>
+      </div>
     </div>
     <div id="content">
       {{{markup}}}

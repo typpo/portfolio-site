@@ -20506,7 +20506,7 @@
 	      }
 	    }
 	    return (
-	      React.createElement("a", {href: this.props.data.url}, 
+	      React.createElement("a", {className: "project-link", href: this.props.data.url}, 
 	        React.createElement("div", {className: "project flex-item-default", 
 	              style: style, 
 	             onMouseOver: this.onMouseOver, 
