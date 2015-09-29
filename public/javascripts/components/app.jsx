@@ -5,6 +5,8 @@ var React = require('react'),
 
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
+// FIXME
+//import { Link } from 'react-router'
 
 var App = React.createClass({
   render() {
@@ -12,6 +14,9 @@ var App = React.createClass({
       <div>
         <div className="nav">
           <strong>&raquo;</strong> Projects &middot;
+          <Link to="/talks">Talks</Link> &middot;
+          <Link to="/press">Press</Link>
+          {this.props.children}
         </div>
         <div>
           <ProjectList />

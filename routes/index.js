@@ -1,20 +1,19 @@
 var express = require('express');
 var router = express.Router();
 
-require('node-jsx').install({
-    harmony: true,
-    extension: '.jsx'
-});
-
 var React = require('react'),
-    App = React.createFactory(require('../public/javascripts/components/app'));
+    Router = require('react-router').Router,
+    routes = require('../public/javascripts/routes');
 
 router.get('/', function(req, res) {
   var markup = React.renderToString(App());
 
-  res.render('index', {
-    title: 'Ian Webster',
-    markup: markup
+  Router.run(routes, req.url, function(handler) {
+    var content = React.renderToString(<handler />);
+    res.render('index', {
+      title: 'Ian Webster',
+      markup: content,
+    });
   });
 });
 

@@ -9,8 +9,9 @@ module.exports = [{
   },
   module: {
     loaders: [
-      { test: /\.js$/, loader: 'babel-loader' },
-      { test: /\.jsx$/, loader: 'jsx-loader?harmony'},
+      {
+        test: /\.jsx$/, loader: 'babel-loader?harmony'
+      },
     ]
   },
   resolve: {

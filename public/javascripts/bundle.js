@@ -46,36 +46,37 @@
 
 	'use strict';
 
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-	var _reactRouter = __webpack_require__(1);
-
-	var _componentsProjectlist = __webpack_require__(196);
-
-	var _componentsProjectlist2 = _interopRequireDefault(_componentsProjectlist);
-
-	var _componentsTalklist = __webpack_require__(203);
-
-	var _componentsTalklist2 = _interopRequireDefault(_componentsTalklist);
-
 	var React = __webpack_require__(5),
-	    App = React.createFactory(__webpack_require__(201));
+	    App = React.createFactory(__webpack_require__(203));
+
+	// FIXME import { Router, Route } from 'react-router'
+	var ReactRouter = __webpack_require__(1);
+	var Router = ReactRouter.Router;
+	var Route = ReactRouter.Route;
+	ProjectList = __webpack_require__(196);
+	TalkList = __webpack_require__(201);
 
 	if (typeof window !== 'undefined') {
 	  window.onload = function () {
-	    React.render(React.createElement(
-	      _reactRouter.Router,
-	      null,
-	      React.createElement(
-	        _reactRouter.Route,
-	        { path: '/', component: App },
-	        React.createElement(_reactRouter.Route, { path: '*', component: _componentsProjectlist2['default'] }),
-	        React.createElement(_reactRouter.Route, { path: 'talks', component: _componentsTalklist2['default'] }),
-	        React.createElement(_reactRouter.Route, { path: 'press', component: _componentsTalklist2['default'] })
-	      )
-	    ), document.getElementById('content'));
+	    React.render(getAppEntryPoint(), document.getElementById('content'));
 	  };
 	}
+
+	module.exports = {
+	  getAppEntryPoint: function getAppEntryPoint() {
+	    return React.createElement(
+	      Router,
+	      null,
+	      React.createElement(
+	        Route,
+	        { path: '/', component: App },
+	        React.createElement(Route, { path: '*', component: ProjectList }),
+	        React.createElement(Route, { path: 'talks', component: TalkList }),
+	        React.createElement(Route, { path: 'press', component: TalkList })
+	      )
+	    );
+	  }
+	};
 
 /***/ },
 /* 1 */
@@ -21984,19 +21985,85 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(5),
-	    Search = __webpack_require__(202),
+	    talkData = __webpack_require__(202);
+
+	var TalkList = React.createClass({displayName: "TalkList",
+	  getInitialState:function() {
+	    return {
+	      data: talkData,
+	    };
+	  },
+	  render:function() {
+	    /*
+	    var projects = this.state.data.map(function(project, idx) {
+	      return (
+	        <Project data={project} key={idx} />
+	      );
+	    });
+	    */
+	    return (
+	      React.createElement("div", {className: "project-list flex-container"}, 
+	        "hey yall"
+	      )
+	    );
+	  },
+	});
+
+	module.exports = TalkList;
+
+
+/***/ },
+/* 202 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = [{
+	  title: 'ideaCity',
+	  where: 'Toronto'
+	}, {
+	  title: 'Economics of NEOs',
+	  where: 'NASA AMES'
+	}, {
+	  title: 'EmpireJS',
+	  where: 'NYC'
+	}, {
+	  title: 'OpenVizConf',
+	  where: 'Boston'
+	}, {
+	  title: 'DevBootCamp',
+	  where: 'SF'
+	}, {
+	  title: 'import.io',
+	  where: 'SF'
+	}, {
+	  title: 'World Technology Awards',
+	  where: 'NYC'
+	}];
+
+/***/ },
+/* 203 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(5),
+	    Search = __webpack_require__(204),
 	    Project = __webpack_require__(197),
 	    ProjectList = __webpack_require__(196);
 
 	var ReactRouter = __webpack_require__(1);
 	var Link = ReactRouter.Link;
+	// FIXME
+	//import { Link } from 'react-router'
 
 	var App = React.createClass({displayName: "App",
 	  render:function() {
 	    return (
 	      React.createElement("div", null, 
 	        React.createElement("div", {className: "nav"}, 
-	          React.createElement("strong", null, "»"), " Projects ·"
+	          React.createElement("strong", null, "»"), " Projects ·", 
+	          React.createElement(Link, {to: "/talks"}, "Talks"), " ·", 
+	          React.createElement(Link, {to: "/press"}, "Press"), 
+	          this.props.children
 	        ), 
 	        React.createElement("div", null, 
 	          React.createElement(ProjectList, null)
@@ -22010,7 +22077,7 @@
 
 
 /***/ },
-/* 202 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(5);
@@ -22040,67 +22107,6 @@
 
 	module.exports = Search;
 
-
-/***/ },
-/* 203 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(5),
-	    talkData = __webpack_require__(204);
-
-	var TalkList = React.createClass({displayName: "TalkList",
-	  getInitialState:function() {
-	    return {
-	      data: talkData,
-	    };
-	  },
-	  render:function() {
-	    /*
-	    var projects = this.state.data.map(function(project, idx) {
-	      return (
-	        <Project data={project} key={idx} />
-	      );
-	    });
-	    */
-	    return (
-	      React.createElement("div", {className: "project-list flex-container"}, 
-	        "hey yall"
-	      )
-	    );
-	  },
-	});
-
-	module.exports = TalkList;
-
-
-/***/ },
-/* 204 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	module.exports = [{
-	  title: 'ideaCity',
-	  where: 'Toronto'
-	}, {
-	  title: 'Economics of NEOs',
-	  where: 'NASA AMES'
-	}, {
-	  title: 'EmpireJS',
-	  where: 'NYC'
-	}, {
-	  title: 'OpenVizConf',
-	  where: 'Boston'
-	}, {
-	  title: 'DevBootCamp',
-	  where: 'SF'
-	}, {
-	  title: 'import.io',
-	  where: 'SF'
-	}, {
-	  title: 'World Technology Awards',
-	  where: 'NYC'
-	}];
 
 /***/ }
 /******/ ]);
