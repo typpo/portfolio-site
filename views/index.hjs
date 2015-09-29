@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ title }}</title>
     <link href="//fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,700,700italic,900,900italic" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/stylesheets/style.css" />
@@ -25,7 +27,7 @@
       </p>
 
     </div>
-    <div class="flex-container">
+    <div class="flex-container about-container">
       <div id="about">
         <p>
           I'm an engineer at <a href="http://google.com" target="_blank">Google</a>.  I created <a href="http://www.asterank.com" target="_blank">Asterank</a>, acquired by Planetary Resources in 2013.

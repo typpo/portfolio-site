@@ -20582,13 +20582,13 @@
 	  },
 	  {
 	    title: 'Galaxies',
-	    desc: 'Visualization of 5 million galaxies in 2 billion cubic light-years - based on one of the largest n-body simulations ever.',
+	    desc: '5 million galaxies in 2 billion cubic light-years - based on one of the largest n-body simulations ever.',
 	    imgurl: 'http://i.imgur.com/mzwBJ8Sl.jpg',
 	    url: 'http://www.asterank.com/galaxies',
 	  },
 	  {
 	    title: 'Asteroid Viewer',
-	    desc: 'View accurate 3D models of asteroids from radar and inverted light curves.',
+	    desc: 'Accurate 3D models of asteroids from radar and inverted light curves.',
 	    imgurl: 'http://i.imgur.com/yQaQHiUl.png',
 	    url: 'http://www.ianww.com/asteroid-viewer',
 	  },
