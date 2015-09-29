@@ -20726,6 +20726,48 @@
 	    desc: 'Contextual annotations for spoken conversation, YC Hacks winner.',
 	    imgurl: 'https://i.imgur.com/nwXZtDel.png',
 	  },
+	  {
+	    title: 'Pluto',
+	    desc: 'Pluto in 3D.',
+	    imgurl: 'https://i.imgur.com/M9lM5gQl.png',
+	    url: 'http://www.ianww.com/pluto',
+	  },
+	  {
+	    title: 'Ceres',
+	    desc: 'Ceres in 3D.',
+	    imgurl: 'https://i.imgur.com/Q3jcJiFl.png',
+	    url: 'http://www.ianww.com/ceres',
+	  },
+	  {
+	    title: 'Perseids',
+	    desc: 'An accurate model of the Perseids meteor shower.',
+	    imgurl: 'https://i.imgur.com/n5U34ahl.png',
+	    url: 'http://www.ianww.com/meteor-showers/perseids',
+	  },
+	  {
+	    title: 'Chatalyst',
+	    desc: 'Taking the pain out of video chat.',
+	    imgurl: 'http://i.imgur.com/yyayOHTl.jpg',
+	    url: 'http://www.ianww.com/meteor-showers/perseids',
+	  },
+	  {
+	    title: 'Neutral Gas',
+	    desc: 'Micro carbon offsets for individual gas fill-ups.',
+	    imgurl: 'http://i.imgur.com/lSAUkmIl.png',
+	    url: 'https://www.neutralgas.com',
+	  },
+	  {
+	    title: 'The Space Potato',
+	    desc: 'A successful kickstarter for a potato-powered mission to near-space.',
+	    imgurl: 'http://i.imgur.com/9ngl1H5l.jpg',
+	    url: 'http://spacepotato.org',
+	  },
+	  {
+	    title: 'Gifthorse',
+	    desc: 'A gift suggestion engine.',
+	    imgurl: 'http://www.ianww.com/images/gifthorse.png',
+	    url: 'http://gifthorse.herokuapp.com',
+	  },
 	]
 
 
