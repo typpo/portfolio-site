@@ -20488,13 +20488,13 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var VisibilitySensor = __webpack_require__(164);
+	var CVM = __webpack_require__(165);
 
 	var Project = React.createClass({displayName: "Project",
+	  mixins: [CVM],
 	  getInitialState:function() {
 	    return {
 	      hover: false,
-	      imageLoaded: false,
 	    }
 	  },
 	  render:function() {
@@ -20502,7 +20502,7 @@
 	    if (this.props.data.imgurl) {
 	      if (this.state.hover) {
 	        style['backgroundImage'] = 'url(' + this.props.data.imgurl + ')';
-	      } else if(this.state.imageLoaded) {
+	      } else if(this.state.visible) {
 	        style['backgroundImage'] = 'linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(' +
 	                this.props.data.imgurl + ')';
 	      }
@@ -20517,8 +20517,7 @@
 	             onMouseOver: this.onMouseOver, 
 	             onMouseOut: this.onMouseOut}, 
 	          React.createElement("h3", {className: "title"}, this.props.data.title), 
-	          React.createElement("div", {className: "desc"}, this.props.data.desc), 
-	          React.createElement(VisibilitySensor, {onChange: this.onVisibilityChange})
+	          React.createElement("div", {className: "desc"}, this.props.data.desc)
 	        )
 	      )
 	    );
@@ -20532,13 +20531,6 @@
 	    this.setState({
 	      hover: false,
 	    });
-	  },
-	  onVisibilityChange:function(isVisible) {
-	    if (isVisible) {
-	      this.setState({
-	        imageLoaded: true,
-	      });
-	    }
 	  },
 	});
 
@@ -20784,140 +20776,170 @@
 /***/ },
 /* 162 */,
 /* 163 */,
-/* 164 */
+/* 164 */,
+/* 165 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	(function() {
+	  var React = typeof window !== 'undefined' && window.React || __webpack_require__(1);
 
-	var React = __webpack_require__(1);
+	  var RATE_LIMIT = 25;
 
-	var containmentPropType = React.PropTypes.any;
+	  var ComponentVisibilityMixin = {
+	    setComponentVisbilityRateLimit: function(milliseconds) {
+	      RATE_LIMIT = milliseconds;
+	    },
 
-	if (typeof window !== 'undefined') {
-	  containmentPropType = React.PropTypes.instanceOf(Element);
-	}
+	    getInitialState: function() {
+	      return { visible: false };
+	    },
 
-	module.exports = React.createClass({
-	  displayName: 'VisibilitySensor',
+	    componentDidMount: function() {
+	      this.enableVisbilityHandling(true);
+	    },
 
-	  propTypes: {
-	    onChange: React.PropTypes.func.isRequired,
-	    active: React.PropTypes.bool,
-	    partialVisibility: React.PropTypes.bool,
-	    delay: React.PropTypes.number,
-	    containment: containmentPropType,
-	    children: React.PropTypes.element
-	  },
+	    componentWillUnmount: function() {
+	      this.disableVisbilityHandling();
+	    },
 
-	  getDefaultProps: function () {
-	    return {
-	      active: true,
-	      partialVisibility: false,
-	      delay: 1000,
-	      containment: null,
-	      children: React.createElement('span')
-	    };
-	  },
+	    /**
+	     * Check whether a component is in view based on its DOM node,
+	     * checking for both vertical and horizontal in-view-ness, as
+	     * well as whether or not it's invisible due to CSS rules based
+	     * on opacity:0 or visibility:hidden.
+	     */
+	    checkComponentVisibility: function() {
+	      var domnode = this._dom_node,
+	          gcs = window.getComputedStyle(domnode, false),
+	          dims = domnode.getBoundingClientRect(),
+	          h = window.innerHeight,
+	          w = window.innerWidth,
+	          // are we vertically visible?
+	          topVisible = 0 < dims.top && dims.top < h,
+	          bottomVisible = 0 < dims.bottom && dims.bottom < h,
+	          verticallyVisible = topVisible || bottomVisible,
+	          // also, are we horizontally visible?
+	          leftVisible = 0 < dims.left && dims.left < w,
+	          rightVisible = 0 < dims.right && dims.right < w,
+	          horizontallyVisible = leftVisible || rightVisible,
+	          // we're only visible if both of those are true.
+	          visible = horizontallyVisible && verticallyVisible;
 
-	  getInitialState: function () {
-	    return {
-	      isVisible: null,
-	      visibilityRect: {}
-	    };
-	  },
+	      // but let's be fair: if we're opacity: 0 or
+	      // visibility: hidden, or browser window is minimized we're not visible at all.
+	      if(visible) {
+	        var isDocHidden = document.hidden;
+	        var isElementNotDisplayed = (gcs.getPropertyValue("display") === "none");
+	        var elementHasZeroOpacity = (gcs.getPropertyValue("opacity") === 0);
+	        var isElementHidden = (gcs.getPropertyValue("visibility") === "hidden");
+	        visible = visible && !(
+	          isDocHidden || isElementNotDisplayed || elementHasZeroOpacity || isElementHidden
+	        );
+	      }
 
-	  componentDidMount: function () {
-	    if (this.props.active) {
-	      this.startWatching();
+	      // at this point, if our visibility is not what we expected,
+	      // update our state so that we can trigger whatever needs to
+	      // happen.
+	      if(visible !== this.state.visible) {
+	        // set State first:
+	        this.setState({ visible: visible },
+	        // then notify the component the value was changed:
+	        function() {
+	          if (this.componentVisibilityChanged) {
+	            this.componentVisibilityChanged();
+	          }
+	        });
+	      }
+	    },
+
+	    /**
+	     * This can be called to manually turn on visibility handling, if at
+	     * some point it got turned off. Call this without arguments to turn
+	     * listening on, or with argument "true" to turn listening on and
+	     * immediately check whether this element is already visible or not.
+	     */
+	    enableVisbilityHandling: function(checkNow) {
+	      if (typeof window === "undefined") {
+	        return console.error("This environment lacks 'window' support.");
+	      }
+
+	      if (typeof document === "undefined") {
+	        return console.error("This environment lacks 'document' support.");
+	      }
+
+	      if (!this._dom_node) {
+	        this._dom_node = React.findDOMNode(this);
+	      }
+	      var domnode = this._dom_node;
+
+	      this._rcv_fn = function() {
+	        if(this._rcv_lock) {
+	          this._rcv_schedule = true;
+	          return;
+	        }
+	        this._rcv_lock = true;
+	        this.checkComponentVisibility();
+	        this._rcv_timeout = setTimeout(function() {
+	          this._rcv_lock = false;
+	          if (this._rcv_schedule) {
+	            this._rcv_schedule = false;
+	            this.checkComponentVisibility();
+	          }
+	        }.bind(this), RATE_LIMIT);
+	      }.bind(this);
+
+	      /* Adding scroll listeners to all element's parents */
+	      while (domnode.nodeName !== 'BODY' && domnode.parentElement) {
+	        domnode = domnode.parentElement;
+	        domnode.addEventListener("scroll", this._rcv_fn);
+	      }
+	      /* Adding listeners to page events */
+	      document.addEventListener("visibilitychange", this._rcv_fn);
+	      document.addEventListener("scroll", this._rcv_fn);
+	      window.addEventListener("resize", this._rcv_fn);
+
+	      if (checkNow) { this._rcv_fn(); }
+	    },
+
+	    /**
+	     * This can be called to manually turn off visibility handling. This
+	     * is particularly handy when you're running it on a lot of components
+	     * and you only really need to do something once, like loading in
+	     * static assets on first-time-in-view-ness (that's a word, right?).
+	     */
+	    disableVisbilityHandling: function() {
+	      clearTimeout(this._rcv_timeout);
+	      if (this._rcv_fn) {
+	        var domnode = this._dom_node;
+
+	        while (domnode.nodeName !== 'BODY' && domnode.parentElement) {
+	          domnode = domnode.parentElement;
+	          domnode.removeEventListener("scroll", this._rcv_fn);
+	        }
+
+	        document.removeEventListener("visibilitychange", this._rcv_fn);
+	        document.removeEventListener("scroll", this._rcv_fn);
+	        window.removeEventListener("resize", this._rcv_fn);
+	        this._rcv_fn = false;
+	      }
 	    }
-	  },
+	  };
 
-	  componentWillUnmount: function () {
-	    this.stopWatching();
-	  },
-
-	  componentWillReceiveProps: function (nextProps) {
-	    if (nextProps.active) {
-	      this.setState(this.getInitialState());
-	      this.startWatching();
-	    } else {
-	      this.stopWatching();
-	    }
-	  },
-
-	  startWatching: function () {
-	    if (this.interval) { return; }
-	    this.interval = setInterval(this.check, this.props.delay);
-	    this.check();
-	  },
-
-	  stopWatching: function () {
-	    this.interval = clearInterval(this.interval);
-	  },
-
-	  /**
-	   * Check if the element is within the visible viewport
-	   */
-	  check: function () {
-	    var el = this.getDOMNode();
-	    var rect = el.getBoundingClientRect();
-	    var containmentRect;
-
-	    if (this.props.containment) {
-	      containmentRect = this.props.containment.getBoundingClientRect();
-	    } else {
-	      containmentRect = {
-	        top: 0,
-	        left: 0,
-	        bottom: window.innerHeight || document.documentElement.clientHeight,
-	        right: window.innerWidth || document.documentElement.clientWidth
-	      };
-	    }
-
-	    var visibilityRect = {
-	      top: rect.top >= containmentRect.top,
-	      left: rect.left >= containmentRect.left,
-	      bottom: rect.bottom <= containmentRect.bottom,
-	      right: rect.right <= containmentRect.right
-	    };
-
-	    var fullVisible = (
-	        visibilityRect.top &&
-	        visibilityRect.left &&
-	        visibilityRect.bottom &&
-	        visibilityRect.right
-	    );
-
-	    var partialVertical =
-	        (rect.top >= containmentRect.top && rect.top <= containmentRect.bottom)
-	     || (rect.bottom >= containmentRect.top && rect.bottom <= containmentRect.bottom);
-
-	    var partialHorizontal =
-	        (rect.left >= containmentRect.left && rect.left <= containmentRect.right)
-	     || (rect.right >= containmentRect.left && rect.right <= containmentRect.right);
-
-	    var partialVisible = partialVertical && partialHorizontal;
-
-	    var isVisible = this.props.partialVisibility
-	      ? partialVisible
-	      : fullVisible;
-
-	    // notify the parent when the value changes
-	    if (this.state.isVisible !== isVisible) {
-	      this.setState({
-	        isVisible: isVisible,
-	        visibilityRect: visibilityRect
-	      });
-	      this.props.onChange(isVisible, visibilityRect);
-	    }
-
-	    return this.state;
-	  },
-
-	  render: function () {
-	    return React.Children.only(this.props.children);
+	  if(true) {
+	    module.exports = ComponentVisibilityMixin;
 	  }
-	});
+
+	  else if (typeof define !== "undefined") {
+	    define(function() {
+	      return ComponentVisibilityMixin;
+	    });
+	  }
+
+	  else if (typeof window !== "undefined") {
+	    window.ComponentVisibilityMixin = ComponentVisibilityMixin;
+	  }
+
+	}());
 
 
 /***/ }

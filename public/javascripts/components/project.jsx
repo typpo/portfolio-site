@@ -1,11 +1,11 @@
 var React = require('react');
-var VisibilitySensor = require('react-visibility-sensor');
+var CVM = require('react-component-visibility');
 
 var Project = React.createClass({
+  mixins: [CVM],
   getInitialState() {
     return {
       hover: false,
-      imageLoaded: false,
     }
   },
   render() {
@@ -13,7 +13,7 @@ var Project = React.createClass({
     if (this.props.data.imgurl) {
       if (this.state.hover) {
         style['backgroundImage'] = 'url(' + this.props.data.imgurl + ')';
-      } else if(this.state.imageLoaded) {
+      } else if(this.state.visible) {
         style['backgroundImage'] = 'linear-gradient( rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1) ), url(' +
                 this.props.data.imgurl + ')';
       }
@@ -29,7 +29,6 @@ var Project = React.createClass({
              onMouseOut={this.onMouseOut}>
           <h3 className="title">{this.props.data.title}</h3>
           <div className="desc">{this.props.data.desc}</div>
-          <VisibilitySensor onChange={this.onVisibilityChange} />
         </div>
       </a>
     );
@@ -43,13 +42,6 @@ var Project = React.createClass({
     this.setState({
       hover: false,
     });
-  },
-  onVisibilityChange(isVisible) {
-    if (isVisible) {
-      this.setState({
-        imageLoaded: true,
-      });
-    }
   },
 });
 
