@@ -9,8 +9,16 @@ require('node-jsx').install({
 var React = require('react'),
     App = React.createFactory(require('../public/javascripts/components/app'));
 
-/* GET home page. */
 router.get('/', function(req, res) {
+  var markup = React.renderToString(App());
+
+  res.render('index', {
+    title: 'Ian Webster',
+    markup: markup
+  });
+});
+
+router.get('/talks', function(req, res) {
   var markup = React.renderToString(App());
 
   res.render('index', {
