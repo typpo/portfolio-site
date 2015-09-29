@@ -22046,7 +22046,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(5),
-	    talkData = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./talks_data.js\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	    talkData = __webpack_require__(204);
 
 	var TalkList = React.createClass({displayName: "TalkList",
 	  getInitialState:function() {
@@ -22072,6 +22072,35 @@
 
 	module.exports = TalkList;
 
+
+/***/ },
+/* 204 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = [{
+	  title: 'ideaCity',
+	  where: 'Toronto'
+	}, {
+	  title: 'Economics of NEOs',
+	  where: 'NASA AMES'
+	}, {
+	  title: 'EmpireJS',
+	  where: 'NYC'
+	}, {
+	  title: 'OpenVizConf',
+	  where: 'Boston'
+	}, {
+	  title: 'DevBootCamp',
+	  where: 'SF'
+	}, {
+	  title: 'import.io',
+	  where: 'SF'
+	}, {
+	  title: 'World Technology Awards',
+	  where: 'NYC'
+	}];
 
 /***/ }
 /******/ ]);
