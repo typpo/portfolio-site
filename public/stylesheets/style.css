@@ -7,6 +7,12 @@ body {
   margin: 0 auto;
 }
 
+#header h1 {
+  font-weight: bold;
+  line-height: normal;
+  font-size: 30px;
+}
+
 a {
   color: #914024;;
   text-decoration: none;
@@ -14,6 +20,7 @@ a {
 }
 
 a:hover {
+  text-decoration: none;
   color: rgb(0, 78, 0);
 }
 
@@ -78,6 +85,7 @@ a:hover {
   margin-top: 15px;
 
   background-position: center;
+  background-repeat: no-repeat;
   background-color: #eee;
 
   color: #fff;
@@ -107,4 +115,15 @@ a:hover {
   background-color: rgba(0, 0, 0, 0.7);
 
   font-size: 14px;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 0;
+    padding-left: 15px;
+  }
+
+  .flex-container {
+    justify-content: center;
+  }
 }
